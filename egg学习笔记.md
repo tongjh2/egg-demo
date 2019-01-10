@@ -105,7 +105,7 @@ module.exports = appInfo => {
             host: '192.168.11.22',
             port: '3306',
             user: 'tongjh',
-            password: 'tong123',
+            password: '123456',
             database: 'tongjh_egg',
         },
         app: true,

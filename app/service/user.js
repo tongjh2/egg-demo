@@ -12,7 +12,8 @@ class UserService extends Service{
     }
 
     async item(id){
-        return 666
+        const user = await this.app.mysql.get('user',{id:1})
+        return user;
     }
 }
 
