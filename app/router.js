@@ -10,8 +10,7 @@ module.exports = app => {
   router.get('/curl/get',controller.curl.get);
   router.get('/curl/post',controller.curl.post);
 
-
   router.get('/user/list',controller.user.list);
-  router.post('/user/item/:id',controller.user.item);
+  router.get('/user/item/:id',controller.user.item);
   router.post('/user/add',controller.user.add);
 };

@@ -10,6 +10,10 @@ class UserService extends Service{
             { id:7,name:'wangwu',age:25 }
         ]
     }
+
+    async item(id){
+        return 666
+    }
 }
 
 module.exports = UserService;
