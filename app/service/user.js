@@ -11,9 +11,19 @@ class UserService extends Service{
         ]
     }
 
-    async item(id){
-        const user = await this.app.mysql.get('user',{id:1})
-        return user;
+    async item(id=0){
+        let res = await this.app.mysql.get('user',{id:id});
+        return res;
+    }
+
+    async add(user){
+        let res = await this.app.mysql.insert('user',user)
+        return res;
+    }
+
+    async delete(id=0){
+        let res = await this.app.mysql.delete('user',{id:id});
+        return res;
     }
 }
 

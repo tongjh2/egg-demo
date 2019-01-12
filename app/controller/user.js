@@ -9,13 +9,22 @@ class UserController extends Controller{
     }
 
     async item(){
-        let id = this.ctx.query.id||1;
+        let id = this.ctx.params.id;
         let item = await this.ctx.service.user.item(id)
         this.ctx.body = item;
     }
 
     async add(){
-        this.ctx.body = { message:'/user/add' };
+        let user = this.ctx.request.body;
+        console.log(user,'username')
+        let res = await this.ctx.service.user.add(user)
+        this.ctx.body = res;
+    }
+
+    async delete(){
+        let id = this.ctx.params.id;
+        let item = await this.ctx.service.user.delete(id)
+        this.ctx.body = item;
     }
 
 }

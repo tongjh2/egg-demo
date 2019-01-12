@@ -9,20 +9,26 @@ module.exports = appInfo => {
     // Middleware 中间件
     config.middleware = [];
 
-    // 单数据库信息配置
     config.mysql = exports.mysql = {
-        client: {            
-            host: '192.168.11.22',// host            
-            port: '3306',// 端口号            
-            user: 'tongjh',// 用户名            
-            password: 'tong123',// 密码            
-            database: 'tongjh_demo',// 数据库名
-        },        
-        app: true,// 是否加载到 app 上，默认开启        
-        agent: false,// 是否加载到 agent 上，默认关闭
+        // 单数据库信息配置
+        client: {
+            // host
+            host: '192.168.11.22',
+            // 端口号
+            port: '3306',
+            // 用户名
+            user: 'tongjh',
+            // 密码
+            password: 'tong123',
+            // 数据库名
+            database: 'tongjh_demo',
+        },
+        // 是否加载到 app 上，默认开启
+        app: true,
+        // 是否加载到 agent 上，默认关闭
+        agent: false,
     }
 
-    //web安全设置
     config.security = {
         csrf:{
             enable: false, //关闭csrf配置

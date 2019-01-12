@@ -29,7 +29,36 @@ config
 
 + 相关配置 config.default.js
 
+
+### web安全设置 `config.default.js`
+
 ```
+module.exports = appInfo => {
+    const config = exports = {};
+
+    // 用于cookie签名密钥，应更改为您自己的并保持安全
+    config.keys = appInfo.name + '_1544499009878_5127';
+
+    // Middleware 中间件
+    config.middleware = [];
+
+    ......
+
+    //web安全设置
+    config.security = {
+        csrf:{
+            enable: false, //关闭csrf配置
+            headerName: 'x-csrf-token', // 通过 header 传递 CSRF token 的默认字段为 x-csrf-token
+            queryName: '_csrf', // 通过 query 传递 CSRF token 的默认字段为 _csrf
+            bodyName: '_csrf', // 通过 body 传递 CSRF token 的默认字段为 _csrf
+            useSession: true, // 默认为 false，当设置为 true 时，将会把 csrf token 保存到 Session 中
+            cookieName: 'csrfToken', // Cookie 中的字段名，默认为 csrfToken
+            sessionName: 'csrfToken', // Session 中的字段名，默认为 csrfToken
+        }
+    }
+
+    return config;
+};
 
 ```
 
@@ -81,7 +110,7 @@ module.exports = appInfo => {
 npm i --save egg-mysql
 ```
 
-开启插件
+在插件配置中开启mysql,`config/plugin.js`
 
 ```
 exports.mysql = {
@@ -90,9 +119,7 @@ exports.mysql = {
 }
 ```
 
-
-
-`config/config.local.js` 中配置本地开发环境mysql
+配置mysql `config/config.default.js` 
 
 ```
 module.exports = appInfo => {
@@ -155,7 +182,7 @@ Controller 层主要对用户的请求参数进行处理（校验、转换），
 this.ctx.params.id   //path 参数
 this.ctx.query.id    //query 参数
 this.ctx.queries		//query中重复的key接受
-this.ctx.request.body.id //body 参数
+this.ctx.request.body //body 全部参数
 this.ctx.headers  //header参数
 this.ctx.get(name) //获取请求header中的一个字段的值
 this.ctx.cookies.get(name) //获取cookie参数
